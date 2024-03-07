@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://slecee.github.io/sitemap.xml
