@@ -6,14 +6,14 @@
     <description>Recent content in 📖学习 on Hzl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://slecee.github.io/en/posts/learn/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>learn</title>
-      <link>https://slecee.github.io/en/posts/learn/learn/</link>
-      <pubDate>Sat, 02 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://slecee.github.io/en/posts/learn/learn/</guid>
-      <description>这是一个测试</description>
+      <title>简单学习介绍</title>
+      <link>https://slecee.github.io/en/posts/learn/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://slecee.github.io/en/posts/learn/readme/</guid>
+      <description>学习过程 啥也不会（完全没有疑问），去打基础 总结并能提出问题 明白为什么提出这些，是为了解决什么问题，这些方法的优点与缺点 跟踪这些问题的最新处理</description>
     </item>
   </channel>
 </rss>
