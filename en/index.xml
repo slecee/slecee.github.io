@@ -34,7 +34,7 @@
       <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/readme/</guid>
-      <description>目前负责 代谢组学 转录组学（学习ing 预计三月底） 单细胞转录组（计划中 四月开始 python与R两套！python忘的差不多了。。思路很重要，剩</description>
+      <description>这是自己生信的学习历程 生物学知识（非生物学专业，缺乏） 统计学与机器学习理论 生物统计的核心特点：样本一般小于特征，由此导致的统计学问题，如假阳</description>
     </item>
     <item>
       <title>1.简单流程介绍</title>
@@ -42,6 +42,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/01.%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</guid>
       <description>1. 数据处理 1.1 服务器上（生成表格型数据） 1.2 本地就行（根据表格型数据分析） 主要是代码 R tidyverse Python pandas Sql(需要提高速度) 问题1： 2. 统计分析 因果推断 更多</description>
+    </item>
+    <item>
+      <title>3.单细胞转录组</title>
+      <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/%E5%8D%95%E7%BB%86%E8%83%9E%E8%BD%AC%E5%BD%95%E7%BB%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/%E5%8D%95%E7%BB%86%E8%83%9E%E8%BD%AC%E5%BD%95%E7%BB%84/</guid>
+      <description>单细胞转录组 https://satijalab.org/seurat/ https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_10x_mtx.html https://www.sc-best-practices.org/preamble.html https://www.jianshu.com/u/8ddbee3681c0 https://www.zhihu.com/people/zha-zhu-94-51/posts https://www.jianshu.com/p/1466ec3152be 单细胞专题系列 系列文章很多 https://cloud.tencent.com/developer/article/2174023 https://cloud.tencent.com/developer/article/2194311 https://zhuanlan.zhihu.com/p/121439929 8个10X单细胞转录组样本的数据合并 这个还挺好 安装软件 直接看官网就行 安装R seurat 安装Py</description>
     </item>
     <item>
       <title>简单学习介绍</title>
