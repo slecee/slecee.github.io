@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>📖学习 on Hzl Blog</title>
-    <link>http://localhost:1313/en/posts/learn/</link>
+    <link>https://slecee.github.io/en/posts/learn/</link>
     <description>Recent content in 📖学习 on Hzl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/en/posts/learn/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://slecee.github.io/en/posts/learn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>简单学习介绍</title>
-      <link>http://localhost:1313/en/posts/learn/readme/</link>
+      <link>https://slecee.github.io/en/posts/learn/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/learn/readme/</guid>
+      <guid>https://slecee.github.io/en/posts/learn/readme/</guid>
       <description>学习过程 啥也不会（完全没有疑问），去打基础 总结并能提出问题 明白为什么提出这些，是为了解决什么问题，这些方法的优点与缺点 跟踪这些问题的最新处理</description>
     </item>
   </channel>

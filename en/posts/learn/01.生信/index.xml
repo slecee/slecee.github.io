@@ -2,44 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>生信 on Hzl Blog</title>
-    <link>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/</link>
+    <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/</link>
     <description>Recent content in 生信 on Hzl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>0.简要</title>
-      <link>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/readme/</link>
+      <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/readme/</guid>
+      <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/readme/</guid>
       <description>这是自己生信的学习历程 生物学知识（非生物学专业，缺乏） 统计学与机器学习理论 生物统计的核心特点：样本一般小于特征，由此导致的统计学问题，如假阳</description>
     </item>
     <item>
       <title>1.环境配置</title>
-      <link>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
+      <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
       <description>环境配置 以下所有的配置都要考虑能否以及是否换成国内的镜像源 windows 1.配置scoop 国内安装scoop的保姆教程 https://blog.csdn.net/sinshine86/article/details/126786780 Scoop 应用库中国加速 https://github.com/duzyn/scoop-cn 2.基于sco</description>
     </item>
     <item>
       <title>2.生物学统计与机器学习</title>
-      <link>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/01.%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</link>
+      <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/01.%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/01.%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/01.%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</guid>
       <description>1. 统计 基本事实：样本量相对特征较少，导致一些统计学方法失效。 一些典型的问题：假阳性问题（P值校正） 如何降维 https://www.bilibili.com/video/BV1sg4y137Cf/ 20220828中山一院临床研究</description>
     </item>
     <item>
       <title>3.转录组</title>
-      <link>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/</link>
+      <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/</guid>
+      <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/</guid>
       <description>1.服务器与环境配置 可以看一下Linux视频，需要知道可以做什么，基本命令可以直接询问chatgpt。 1.1 conda 需求：配置转录组 代谢组等基本环境 删</description>
     </item>
     <item>
       <title>4.单细胞转录组</title>
-      <link>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/03.%E5%8D%95%E7%BB%86%E8%83%9E%E8%BD%AC%E5%BD%95%E7%BB%84/</link>
+      <link>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/03.%E5%8D%95%E7%BB%86%E8%83%9E%E8%BD%AC%E5%BD%95%E7%BB%84/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/03.%E5%8D%95%E7%BB%86%E8%83%9E%E8%BD%AC%E5%BD%95%E7%BB%84/</guid>
+      <guid>https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/03.%E5%8D%95%E7%BB%86%E8%83%9E%E8%BD%AC%E5%BD%95%E7%BB%84/</guid>
       <description>单细胞转录组 https://satijalab.org/seurat/ https://scanpy.readthedocs.io/en/stable/generated/scanpy.read_10x_mtx.html https://www.sc-best-practices.org/preamble.html https://www.jianshu.com/u/8ddbee3681c0 https://www.zhihu.com/people/zha-zhu-94-51/posts https://www.jianshu.com/p/1466ec3152be 单细胞专题系列 系列文章很多 https://cloud.tencent.com/developer/article/2174023 https://cloud.tencent.com/developer/article/2194311 https://zhuanlan.zhihu.com/p/121439929 8个10X单细胞转录组样本的数据合并 这个还挺好 7.转录组学习过程 https://www.bilibili.com/video/BV1K44y1B7Dg/ 免费 入门时学的 非常</description>
     </item>
   </channel>

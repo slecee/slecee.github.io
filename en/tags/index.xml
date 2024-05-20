@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>🧩 标签 on Hzl Blog</title>
-    <link>http://localhost:1313/en/tags/</link>
+    <link>https://slecee.github.io/en/tags/</link>
     <description>Recent content in 🧩 标签 on Hzl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 02 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://slecee.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Learn</title>
-      <link>http://localhost:1313/en/tags/learn/</link>
+      <link>https://slecee.github.io/en/tags/learn/</link>
       <pubDate>Sat, 02 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/learn/</guid>
+      <guid>https://slecee.github.io/en/tags/learn/</guid>
       <description></description>
     </item>
     <item>
       <title>Life</title>
-      <link>http://localhost:1313/en/tags/life/</link>
+      <link>https://slecee.github.io/en/tags/life/</link>
       <pubDate>Sat, 02 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/life/</guid>
+      <guid>https://slecee.github.io/en/tags/life/</guid>
       <description></description>
     </item>
   </channel>
