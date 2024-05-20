@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>3.转录组 | Hzl Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="1.服务器与环境配置 可以看一下Linux视频，需要知道可以做什么，基本命令可以直接询问chatgpt。 1.1 conda 需求：配置转录组 代谢组等基本环境 删">
+<meta name="author" content="Hzl">
+<link rel="canonical" href="http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4599eadb9eb2ad3d0a8d6827b41a8fda8f2f4af226b63466c09c5fddbc8706b7.css" integrity="sha256-RZnq256yrT0KjWgntBqP2o8vSvImtjRmwJxf3byHBrc=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="3.转录组" />
+<meta property="og:description" content="1.服务器与环境配置 可以看一下Linux视频，需要知道可以做什么，基本命令可以直接询问chatgpt。 1.1 conda 需求：配置转录组 代谢组等基本环境 删" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/" /><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="3.转录组"/>
+<meta name="twitter:description" content="1.服务器与环境配置 可以看一下Linux视频，需要知道可以做什么，基本命令可以直接询问chatgpt。 1.1 conda 需求：配置转录组 代谢组等基本环境 删"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚文章",
+      "item": "http://localhost:1313/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📖学习",
+      "item": "http://localhost:1313/en/posts/learn/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "3.转录组",
+      "item": "http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "3.转录组",
+  "name": "3.转录组",
+  "description": "1.服务器与环境配置 可以看一下Linux视频，需要知道可以做什么，基本命令可以直接询问chatgpt。 1.1 conda 需求：配置转录组 代谢组等基本环境 删",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "1.服务器与环境配置 可以看一下Linux视频，需要知道可以做什么，基本命令可以直接询问chatgpt。\n1.1 conda 需求：配置转录组 代谢组等基本环境\n删除miniconda\nrm -rfv ~/miniconda3 编辑 ~/.bashrc（如果主目录下没有 .bashrc 这个文件就编辑文件 .bash_profile），删除和 Anaconda 和 Miniconda 相关的部分 在用户主目录删除下列隐藏文件和文件夹 rm -rfv ~/.condarc ~/.conda ~/.continuum 安装miniconda（https://cloud.tencent.com/developer/article/1889220）\n清华等镜像 https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/ 选择想要的版本 复制链接 wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py38_23.11.0-1-Linux-x86_64.sh 注意！！ 这里安装的python版本是3.8！！后续安装包的时候可能会有版本的冲突（建议安装最新版本，然后创建其他版本的虚拟环境） wget 后目录下会有名字 bash Miniconda3-py38_23.11.0-1-Linux-x86_64.sh 一路enter或者yes 生成mini3文件夹，删除xx.sh source .bashrc 配置修改~/.condarc(生信较为特殊) vim .condarc channels: # - 前后都有空格 - bioconda - conda-forge - r - defaults 安装mamba 判断是否创建虚拟环境，进入虚拟环境，安装包 1.2 docker 核心需求：在新的linux系统中，有两个用户，同时都要用rstudio，但是r-base一个用户要用老一点的，一个要用新一点的，另外二者都各自下载自己的包（最好在自己的家目录下），如何解决？ 不用rstudio直接配置需要的虚拟环境即可 用rstudio需要配置docker\n在 Linux 上 安装 R/RStudio Server 及 R 包（注意这里安装的是源码） https://yuanfan.rbind.io/project/installr/\n切换rstudio-server中的R https://xiyoucloud.github.io/2022/12/31/%E5%88%87%E6%8D%A2rstudio-server%E4%B8%AD%E7%9A%84R/ Rstudio Server 不同R版本配置和切换 https://cloud.tencent.com/developer/article/1819222 「R」R Docker 教程（主要参考这一篇） https://cloud.tencent.com/developer/article/1670765\n注意：配置时会出现各种问题！！权限问题啊等等\n自带python3.10 conda 安装最新的python 3.12 然后安装r=4.3.3出现各种配置冲突问题 conda安装python 3.10 conda 安装 r-base=4.1.2 此外还要配置 解决ubuntu22.04依赖问题 apt换源 才ok 安装报错不知道为啥 这里我才知道为啥https://yuanfan.rbind.io/project/installr/ 他安装的是源码文件压缩包 docker search r-base docker pull r-base:4.3.3 # 917MB docker images docker pull rocker/rstudio:4.3.3 # 2.06GB\nvscode 旁白的端口要设置！！ docker run -it -d -p 8888:8787 –name hzl_rstudio -e USER=sleece -e PASSWORD=99999999 -v /work/users/zhileihuang/docker_test:/home/sleece/docker_rstudio_home rocker/rstudio:4.3.3 8787这个端口是很重要的，Rstudio用的 8888是自己本地打开的浏览器后面带的！！！！ 最好加上–privileged=true（没测试） 目前来看不加的话，本地docker_test没权限 看一下docker_test -rw-r–r– 更改方法 进入 docker下的终端 然后更改docker_rstudio_home的权限为777 chmod -R 777 docker_rstudio_home 即可\nhttps://blog.csdn.net/YZJenny/article/details/129109438 !!!!docker 配置rstudio第一步解决！ docker exec -it hzl_rstudio bash ### 务必注意这里进的是docker下的 /etc/init.d/rstudio-server start\n如何持久化这个容器 也就是对这个容器的更改 一直保存在这个容器里面 docker images -a 所有镜像 类 docker rmi -f 镜像ID\n实例 docker ps -a 不带-a是查看所有已运行中的容器。 docker stop id docker rm id/名称\n1.3 流程化（后续待学习） 1.4 一些操作 linux批量给隐藏文件名加前缀 在Linux中，.开头的文件被视为隐藏文件。正常情况下，使用*通配符来匹配文件时，隐藏文件不会被包含在内。但是，当使用.*时，.开头的文件也会被匹配到。\n让我们详细解释一下为什么rename 's/^(\\.)/prefix_$1/' .* 可以让Linux批量给隐藏文件名加前缀：\nrename命令：rename命令用于批量重命名文件。在这个命令中，我们使用正则表达式来指定重命名的规则。\n's/^(\\.)/prefix_$1/'：这是正则表达式的部分。在这里，我们使用了替换操作符s/old/new/来指定替换规则。正则表达式^(\\.)匹配以.开头的字符串，并且使用括号()将.捕获为第一个子模式。在替换部分，prefix_$1中的$1表示第一个子模式的内容，也就是.。因此，这个规则将以.开头的字符串替换为prefix_加上原始字符串。\n.*：这是通配符，用于匹配当前目录下的所有文件，包括隐藏文件。.*匹配以.开头的文件名，包括隐藏文件。因此，这个命令会将所有隐藏文件名加上前缀。\n综上所述，通过使用正则表达式和通配符，rename 's/^(\\.)/prefix_$1/' .*可以让Linux批量给隐藏文件名加上前缀。\n除了使用rename命令外，您还可以通过循环结构（如for循环）来批量给隐藏文件名加前缀。以下是一个示例：\nfor file in .*; do if [ -f \"$file\" ]; then new_file=\"prefix_$file\" mv \"$file\" \"$new_file\" fi done 2.转录组 参考：\nhttps://www.bilibili.com/video/BV1K44y1B7Dg 15天入门生物信息（2021年）非常非常好！ https://www.bilibili.com/video/BV1Ks4y1L7Wz/ 中科大 高通量测序转录组学部分 https://www.bilibili.com/video/BV1hH4y1d7u4 李学沧转录组 https://zhuanlan.zhihu.com/p/518134934 https://blog.csdn.net/weixin_49878699/article/details/129138175 服务器处理原始数据 linux 软件下载 https://cloud.tencent.com/developer/article/1920263 安装与配置conda 下载软件 conda install xxx即可 质控：fastqc, multiqc, 过滤：trim-galore（需要先安装cutadapt） 序列比对（是否是链特异性）：hisat2 表达定量：subread conda install -y sra-tools trim-galore hisat2 subread multiqc samtools salmon fastp fastqc 数据准备 测序数据（1.单端双端 2.SRA 测序公司） sra:如何批量且快的下载 下载：下载软件conda install sra-tools prefetch SRRxxx 批量：send to run selector 一个样本列表，其实就是得到样本列表 然后nohup prefetch SRRxxx \u0026，sed awk生成批量也行，循环也可以 快速：搜其他软件（Aspera？） 数据：得到的是sra格式 转成fastq 单末端 fastq-dump –gzip SRRxxx.sra 双末端 fastq-dump –split-3 –gzip SRRxxx.sra 注意不是很快！可以去搜索其它更快命令（ fasterq-dump –split3 SRRxxx.sra） 请务必想一下，没有绝对更优的软件（如果更优就直接替代了），为了快软件舍弃了什么？？？ 从头这样做很耗费时间（而且是对文章复现或者质疑），一般只有自己测的数据这样做，毕竟geo上有整理好的count与标准化后的数据 参考基因组 (https://zhuanlan.zhihu.com/p/383397412) 记得更新！(常见：人与小鼠 在哪下都好弄 不常见需要follow文献（终极解决大法），网上搜一下其它数据库) 参考基因组注释文件 gff3文件转gtf文件 conda install gffread (gtf 方便程序读取) gunzip HFxx.gene.gff3.gz gffread -T -o genes.gtf HFxx.gene.gff3 代码操作 # 文件名 6582494904bf0607963251f5--L1EHL0801657--D1.R1.clean.fastq.gz # 生成文件结构 # 01.raw_data # 02.lean_data # 03.align # 04. # 批量如何加速的问题 并行化 印象中是写了的 写成函数貌似 # 批量质控与过滤 fastp软件 # {id##*--} 原因 https://blog.csdn.net/weixin_40746176/article/details/104515638 cd ./01.raw_data ls *R1.raw.fastq.gz | while read id do id=${id/R1.raw.fastq.gz} fastp -i ${id}R1.raw.fastq.gz \\ -I ${id}R2.raw.fastq.gz \\ -o ../02.clean_data/${id}R1.clean.fastq.gz\\ -O ../02.clean_data/${id}R2.clean.fastq.gz\\ -w 16 --html ../02.clean_data/${id##*--}html \\ --json ../02.clean_data/${id##*--}json \\ 1\u003e${id}fastp.log 2\u003e\u00261 done ### 生成bam文件 cd ../02.clean_data index=~/Biology/cankao_gene/mouse/mouse_index/mouse_gene # 参考基因组位置 ls *R1.clean.fastq.gz | while read id do id=${id/R1.clean.fastq.gz} hisat2 -p 10 -x ${index} \\ -1 ${id}R1.clean.fastq.gz \\ -2 ${id}R2.clean.fastq.gz \\ -S ${id##*--}sam \\ 1\u003e${id}hisat2.log 2\u003e\u00261 # samtools sort -@ 10 -o ../03align_out/${id}.bam \u0026 samtools sort -@ 10 -o ../03.align/${id##*--}hisat2.sort.bam ${id##*--}sam rm ${id}sam done \u0026 cd ../03.align ls ../*.bam | while read id ;\\ do { samtools flagstat -@ 12 $id \u003e $(basename $id '.bam').flagstat } \u0026 done multiqc ./ gtf=~/Biology/cankao_gene/mouse/gencode.vM34.annotation.gtf # 看这里加了引号是不一样的 # 加了引号报错，估计要写绝对路径 featureCounts -T 12 -p -a ${gtf} -o counts.txt ../03.align/*.bam gencode.vM34.annotation.gtf awk '{if(!NF || /^#/){next}}1' gencode.vM34.annotation.gtf | awk '{$2=null;$6=null;$7=null;$8=null;print $3\"\\t\"$0}'| awk '{if(/^g/){print $0}}'| awk '{print $11\"\\t\"$9\"\\t\"$7\"\\t\"$2\"\\t\"$4\"\\t\"$5}' |sed 's/\"//g'| sed 's/;//g' \u003e humanGTF # 如何做基因名之间的转换（Ensembl_ID 转 Symbol） # https://zhuanlan.zhihu.com/p/545090165 ",
+  "wordCount" : "2568",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":[{
+    "@type": "Person",
+    "name": "Hzl"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/02.%E8%BD%AC%E5%BD%95%E7%BB%84/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hzl Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/en/" accesskey="h" title="Hzl Blog (Alt + H)">Hzl Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/en/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/posts" title="📖文章">
+                    <span>📖文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/en/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/en/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/en/posts/">📚文章</a>&nbsp;»&nbsp;<a href="http://localhost:1313/en/posts/learn/">📖学习</a></div>
+    <h1 class="post-title entry-hint-parent">
+      3.转录组
+    </h1>
+    <div class="post-meta">6 min&nbsp;·&nbsp;Hzl
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="1服务器与环境配置">1.服务器与环境配置<a hidden class="anchor" aria-hidden="true" href="#1服务器与环境配置">#</a></h3>
+<p>可以看一下Linux视频，需要知道可以做什么，基本命令可以直接询问chatgpt。</p>
+<h4 id="11-conda">1.1 conda<a hidden class="anchor" aria-hidden="true" href="#11-conda">#</a></h4>
+<p>需求：配置转录组 代谢组等基本环境</p>
+<p>删除miniconda</p>
+<ul>
+<li>rm -rfv ~/miniconda3</li>
+<li>编辑 ~/.bashrc（如果主目录下没有 .bashrc 这个文件就编辑文件 .bash_profile），删除和 Anaconda 和 Miniconda 相关的部分</li>
+<li>在用户主目录删除下列隐藏文件和文件夹 rm -rfv ~/.condarc ~/.conda ~/.continuum</li>
+</ul>
+<p>安装miniconda（https://cloud.tencent.com/developer/article/1889220）</p>
+<ul>
+<li>清华等镜像 <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/</a></li>
+<li>选择想要的版本 复制链接 wget <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py38_23.11.0-1-Linux-x86_64.sh">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py38_23.11.0-1-Linux-x86_64.sh</a></li>
+<li>注意！！ 这里安装的python版本是3.8！！后续安装包的时候可能会有版本的冲突（建议安装最新版本，然后创建其他版本的虚拟环境）</li>
+<li>wget 后目录下会有名字 bash Miniconda3-py38_23.11.0-1-Linux-x86_64.sh  一路enter或者yes</li>
+<li>生成mini3文件夹，删除xx.sh source .bashrc</li>
+<li>配置修改~/.condarc(生信较为特殊) vim .condarc</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>channels: <span style="color:#75715e"># - 前后都有空格</span>
+</span></span><span style="display:flex;"><span> - bioconda
+</span></span><span style="display:flex;"><span> - conda-forge
+</span></span><span style="display:flex;"><span> - r
+</span></span><span style="display:flex;"><span> - defaults
+</span></span></code></pre></div><ul>
+<li>安装mamba</li>
+<li>判断是否创建虚拟环境，进入虚拟环境，安装包</li>
+</ul>
+<h4 id="12-docker">1.2 docker<a hidden class="anchor" aria-hidden="true" href="#12-docker">#</a></h4>
+<p>核心需求：在新的linux系统中，有两个用户，同时都要用rstudio，但是r-base一个用户要用老一点的，一个要用新一点的，另外二者都各自下载自己的包（最好在自己的家目录下），如何解决？
+不用rstudio直接配置需要的虚拟环境即可
+用rstudio需要配置docker</p>
+<p>在 Linux 上 安装 R/RStudio Server 及 R 包（注意这里安装的是源码）
+<a href="https://yuanfan.rbind.io/project/installr/">https://yuanfan.rbind.io/project/installr/</a><br>
+切换rstudio-server中的R
+<a href="https://xiyoucloud.github.io/2022/12/31/%E5%88%87%E6%8D%A2rstudio-server%E4%B8%AD%E7%9A%84R/">https://xiyoucloud.github.io/2022/12/31/%E5%88%87%E6%8D%A2rstudio-server%E4%B8%AD%E7%9A%84R/</a>
+Rstudio Server 不同R版本配置和切换
+<a href="https://cloud.tencent.com/developer/article/1819222">https://cloud.tencent.com/developer/article/1819222</a>
+「R」R Docker 教程（主要参考这一篇）
+<a href="https://cloud.tencent.com/developer/article/1670765">https://cloud.tencent.com/developer/article/1670765</a></p>
+<p>注意：配置时会出现各种问题！！权限问题啊等等</p>
+<ol>
+<li>自带python3.10</li>
+<li>conda 安装最新的python 3.12</li>
+<li>然后安装r=4.3.3出现各种配置冲突问题</li>
+<li>conda安装python 3.10</li>
+<li>conda 安装 r-base=4.1.2 此外还要配置 解决ubuntu22.04依赖问题 apt换源 才ok
+安装报错不知道为啥
+这里我才知道为啥https://yuanfan.rbind.io/project/installr/ 他安装的是源码文件压缩包</li>
+</ol>
+<p>docker search r-base
+docker pull r-base:4.3.3  # 917MB
+docker images
+docker pull rocker/rstudio:4.3.3 # 2.06GB</p>
+<h4 id="vscode-旁白的端口要设置">vscode 旁白的端口要设置！！<a hidden class="anchor" aria-hidden="true" href="#vscode-旁白的端口要设置">#</a></h4>
+<p>docker run -it -d -p 8888:8787 &ndash;name hzl_rstudio -e USER=sleece -e PASSWORD=99999999 -v /work/users/zhileihuang/docker_test:/home/sleece/docker_rstudio_home rocker/rstudio:4.3.3 8787这个端口是很重要的，Rstudio用的  8888是自己本地打开的浏览器后面带的！！！！ 最好加上&ndash;privileged=true（没测试）
+目前来看不加的话，本地docker_test没权限 看一下docker_test -rw-r&ndash;r&ndash; 更改方法 进入 docker下的终端 然后更改docker_rstudio_home的权限为777 chmod  -R 777 docker_rstudio_home 即可</p>
+<h4 id="httpsblogcsdnnetyzjennyarticledetails129109438----docker-配置rstudio第一步解决"><a href="https://blog.csdn.net/YZJenny/article/details/129109438">https://blog.csdn.net/YZJenny/article/details/129109438</a>    !!!!docker 配置rstudio第一步解决！<a hidden class="anchor" aria-hidden="true" href="#httpsblogcsdnnetyzjennyarticledetails129109438----docker-配置rstudio第一步解决">#</a></h4>
+<p>docker exec -it hzl_rstudio bash ### 务必注意这里进的是docker下的
+/etc/init.d/rstudio-server start</p>
+<h3 id="如何持久化这个容器-也就是对这个容器的更改-一直保存在这个容器里面">如何持久化这个容器 也就是对这个容器的更改 一直保存在这个容器里面<a hidden class="anchor" aria-hidden="true" href="#如何持久化这个容器-也就是对这个容器的更改-一直保存在这个容器里面">#</a></h3>
+<p>docker images -a 所有镜像 类
+docker rmi -f 镜像ID</p>
+<p>实例
+docker ps -a  不带-a是查看所有已运行中的容器。
+docker stop id
+docker rm id/名称</p>
+<h4 id="13-流程化后续待学习">1.3 流程化（后续待学习）<a hidden class="anchor" aria-hidden="true" href="#13-流程化后续待学习">#</a></h4>
+<h4 id="14-一些操作">1.4 一些操作<a hidden class="anchor" aria-hidden="true" href="#14-一些操作">#</a></h4>
+<p>linux批量给隐藏文件名加前缀
+在Linux中，<code>.</code>开头的文件被视为隐藏文件。正常情况下，使用<code>*</code>通配符来匹配文件时，隐藏文件不会被包含在内。但是，当使用<code>.*</code>时，<code>.</code>开头的文件也会被匹配到。</p>
+<p>让我们详细解释一下为什么<code>rename 's/^(\.)/prefix_$1/' .*</code> 可以让Linux批量给隐藏文件名加前缀：</p>
+<ol>
+<li>
+<p><code>rename</code>命令：<code>rename</code>命令用于批量重命名文件。在这个命令中，我们使用正则表达式来指定重命名的规则。</p>
+</li>
+<li>
+<p><code>'s/^(\.)/prefix_$1/'</code>：这是正则表达式的部分。在这里，我们使用了替换操作符<code>s/old/new/</code>来指定替换规则。正则表达式<code>^(\.)</code>匹配以<code>.</code>开头的字符串，并且使用括号<code>()</code>将<code>.</code>捕获为第一个子模式。在替换部分，<code>prefix_$1</code>中的<code>$1</code>表示第一个子模式的内容，也就是<code>.</code>。因此，这个规则将以<code>.</code>开头的字符串替换为<code>prefix_</code>加上原始字符串。</p>
+</li>
+<li>
+<p><code>.*</code>：这是通配符，用于匹配当前目录下的所有文件，包括隐藏文件。<code>.*</code>匹配以<code>.</code>开头的文件名，包括隐藏文件。因此，这个命令会将所有隐藏文件名加上前缀。</p>
+</li>
+</ol>
+<p>综上所述，通过使用正则表达式和通配符，<code>rename 's/^(\.)/prefix_$1/' .*</code>可以让Linux批量给隐藏文件名加上前缀。</p>
+<p>除了使用rename命令外，您还可以通过循环结构（如for循环）来批量给隐藏文件名加前缀。以下是一个示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in .*; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -f <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>        new_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;prefix_</span>$file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        mv <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span>$new_file<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h3 id="2转录组">2.转录组<a hidden class="anchor" aria-hidden="true" href="#2转录组">#</a></h3>
+<p>参考：</p>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1K44y1B7Dg">https://www.bilibili.com/video/BV1K44y1B7Dg</a> 15天入门生物信息（2021年）非常非常好！</li>
+<li><a href="https://www.bilibili.com/video/BV1Ks4y1L7Wz/">https://www.bilibili.com/video/BV1Ks4y1L7Wz/</a>  中科大 高通量测序转录组学部分</li>
+<li><a href="https://www.bilibili.com/video/BV1hH4y1d7u4">https://www.bilibili.com/video/BV1hH4y1d7u4</a> 李学沧转录组</li>
+<li><a href="https://zhuanlan.zhihu.com/p/518134934">https://zhuanlan.zhihu.com/p/518134934</a></li>
+<li><a href="https://blog.csdn.net/weixin_49878699/article/details/129138175">https://blog.csdn.net/weixin_49878699/article/details/129138175</a></li>
+</ul>
+<h4 id="服务器处理原始数据">服务器处理原始数据<a hidden class="anchor" aria-hidden="true" href="#服务器处理原始数据">#</a></h4>
+<ol>
+<li>linux 软件下载
+<a href="https://cloud.tencent.com/developer/article/1920263">https://cloud.tencent.com/developer/article/1920263</a></li>
+</ol>
+<ul>
+<li>安装与配置conda</li>
+<li>下载软件 conda install xxx即可</li>
+<li>质控：fastqc, multiqc,</li>
+<li>过滤：trim-galore（需要先安装cutadapt）</li>
+<li>序列比对（是否是链特异性）：hisat2</li>
+<li>表达定量：subread
+conda install -y sra-tools  trim-galore hisat2 subread multiqc samtools salmon fastp fastqc</li>
+</ul>
+<ol start="2">
+<li>数据准备</li>
+</ol>
+<ul>
+<li>测序数据（1.单端双端 2.SRA 测序公司）
+sra:如何批量且快的下载
+下载：下载软件conda install sra-tools prefetch SRRxxx
+批量：send to run selector 一个样本列表，其实就是得到样本列表 然后nohup prefetch SRRxxx &amp;，sed awk生成批量也行，循环也可以
+快速：搜其他软件（Aspera？）
+数据：得到的是sra格式 转成fastq 单末端 fastq-dump &ndash;gzip SRRxxx.sra 双末端  fastq-dump &ndash;split-3 &ndash;gzip SRRxxx.sra 注意不是很快！可以去搜索其它更快命令（ fasterq-dump &ndash;split3 SRRxxx.sra）
+<strong>请务必想一下，没有绝对更优的软件（如果更优就直接替代了），为了快软件舍弃了什么？？？</strong>
+<strong>从头这样做很耗费时间（而且是对文章复现或者质疑），一般只有自己测的数据这样做，毕竟geo上有整理好的count与标准化后的数据</strong></li>
+<li>参考基因组 (<a href="https://zhuanlan.zhihu.com/p/383397412">https://zhuanlan.zhihu.com/p/383397412</a>)
+记得更新！(常见：人与小鼠 在哪下都好弄 不常见需要follow文献（终极解决大法），网上搜一下其它数据库)</li>
+<li>参考基因组注释文件 gff3文件转gtf文件 conda install gffread (gtf 方便程序读取)
+gunzip HFxx.gene.gff3.gz   gffread -T -o genes.gtf HFxx.gene.gff3</li>
+</ul>
+<ol start="3">
+<li>代码操作</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 文件名 6582494904bf0607963251f5--L1EHL0801657--D1.R1.clean.fastq.gz</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成文件结构 </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 01.raw_data</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 02.lean_data</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 03.align</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 04.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 批量如何加速的问题 并行化 印象中是写了的 写成函数貌似</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 批量质控与过滤 fastp软件</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {id##*--} 原因 https://blog.csdn.net/weixin_40746176/article/details/104515638</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd ./01.raw_data
+</span></span><span style="display:flex;"><span>ls *R1.raw.fastq.gz | <span style="color:#66d9ef">while</span> read id
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> 
+</span></span><span style="display:flex;"><span>    id<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>id/R1.raw.fastq.gz<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>    fastp -i <span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>R1.raw.fastq.gz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -I <span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>R2.raw.fastq.gz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -o ../02.clean_data/<span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>R1.clean.fastq.gz<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -O ../02.clean_data/<span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>R2.clean.fastq.gz<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -w <span style="color:#ae81ff">16</span> --html ../02.clean_data/<span style="color:#e6db74">${</span>id##*--<span style="color:#e6db74">}</span>html <span style="color:#ae81ff">\ </span>
+</span></span><span style="display:flex;"><span>        --json ../02.clean_data/<span style="color:#e6db74">${</span>id##*--<span style="color:#e6db74">}</span>json <span style="color:#ae81ff">\ </span>
+</span></span><span style="display:flex;"><span>    1&gt;<span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>fastp.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 生成bam文件</span>
+</span></span><span style="display:flex;"><span>cd ../02.clean_data
+</span></span><span style="display:flex;"><span>index<span style="color:#f92672">=</span>~/Biology/cankao_gene/mouse/mouse_index/mouse_gene <span style="color:#75715e"># 参考基因组位置</span>
+</span></span><span style="display:flex;"><span>ls *R1.clean.fastq.gz | <span style="color:#66d9ef">while</span> read id
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span> 
+</span></span><span style="display:flex;"><span>    id<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>id/R1.clean.fastq.gz<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>    hisat2 -p <span style="color:#ae81ff">10</span> -x <span style="color:#e6db74">${</span>index<span style="color:#e6db74">}</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -1 <span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>R1.clean.fastq.gz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -2 <span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>R2.clean.fastq.gz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>        -S <span style="color:#e6db74">${</span>id##*--<span style="color:#e6db74">}</span>sam <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    1&gt;<span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>hisat2.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># samtools sort -@ 10 -o ../03align_out/${id}.bam &amp;</span>
+</span></span><span style="display:flex;"><span>    samtools sort -@ <span style="color:#ae81ff">10</span> -o ../03.align/<span style="color:#e6db74">${</span>id##*--<span style="color:#e6db74">}</span>hisat2.sort.bam <span style="color:#e6db74">${</span>id##*--<span style="color:#e6db74">}</span>sam
+</span></span><span style="display:flex;"><span>    rm <span style="color:#e6db74">${</span>id<span style="color:#e6db74">}</span>sam
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span> &amp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd ../03.align
+</span></span><span style="display:flex;"><span>ls ../*.bam  | <span style="color:#66d9ef">while</span> read id ;<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span><span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    samtools flagstat -@ <span style="color:#ae81ff">12</span> $id &gt; <span style="color:#66d9ef">$(</span>basename $id <span style="color:#e6db74">&#39;.bam&#39;</span><span style="color:#66d9ef">)</span>.flagstat
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> &amp;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>multiqc ./
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gtf<span style="color:#f92672">=</span>~/Biology/cankao_gene/mouse/gencode.vM34.annotation.gtf <span style="color:#75715e"># 看这里加了引号是不一样的 # 加了引号报错，估计要写绝对路径</span>
+</span></span><span style="display:flex;"><span>featureCounts -T  <span style="color:#ae81ff">12</span>  -p  -a  <span style="color:#e6db74">${</span>gtf<span style="color:#e6db74">}</span>  -o  counts.txt  ../03.align/*.bam
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gencode.vM34.annotation.gtf 
+</span></span><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;{if(!NF || /^#/){next}}1&#39;</span> gencode.vM34.annotation.gtf | awk <span style="color:#e6db74">&#39;{$2=null;$6=null;$7=null;$8=null;print $3&#34;\t&#34;$0}&#39;</span>| awk <span style="color:#e6db74">&#39;{if(/^g/){print $0}}&#39;</span>| awk <span style="color:#e6db74">&#39;{print $11&#34;\t&#34;$9&#34;\t&#34;$7&#34;\t&#34;$2&#34;\t&#34;$4&#34;\t&#34;$5}&#39;</span> |sed <span style="color:#e6db74">&#39;s/&#34;//g&#39;</span>| sed <span style="color:#e6db74">&#39;s/;//g&#39;</span> &gt; humanGTF
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如何做基因名之间的转换（Ensembl_ID 转 Symbol）</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://zhuanlan.zhihu.com/p/545090165</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/en/tags/learn/">Learn</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/01.%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>2.生物学统计与机器学习</span>
+  </a>
+  <a class="next" href="http://localhost:1313/en/posts/learn/01.%E7%94%9F%E4%BF%A1/03.%E5%8D%95%E7%BB%86%E8%83%9E%E8%BD%AC%E5%BD%95%E7%BB%84/">
+    <span class="title">Next »</span>
+    <br>
+    <span>4.单细胞转录组</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="http://localhost:1313/en/">Hzl Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>📷生活 on Hzl Blog</title>
-    <link>https://slecee.github.io/en/posts/life/</link>
+    <link>http://localhost:1313/en/posts/life/</link>
     <description>Recent content in 📷生活 on Hzl Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 02 Mar 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://slecee.github.io/en/posts/life/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/en/posts/life/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Life</title>
-      <link>https://slecee.github.io/en/posts/life/life/</link>
+      <link>http://localhost:1313/en/posts/life/life/</link>
       <pubDate>Sat, 02 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>https://slecee.github.io/en/posts/life/life/</guid>
+      <guid>http://localhost:1313/en/posts/life/life/</guid>
       <description>先写学习文章，生活文章暂时先放一放哈，可能偶尔放一些现阶段觉得有道理（以后觉得真傻）的想法。</description>
     </item>
   </channel>
