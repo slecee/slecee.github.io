@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>4.机器学习 | Hzl Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="已转向python代码（资源相对较多如kaggle，也可以进一步到相对简单点的深度学习），还是简单总结一下mlr3 mlr3book: https://mlr3book.mlr-org.com/index.html https://mlr-org.com/gallery/pipelines/2020-09-11-liver-patient-classification/index.html 代码基本参照这个系列">
+<meta name="author" content="Hzl">
+<link rel="canonical" href="https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4599eadb9eb2ad3d0a8d6827b41a8fda8f2f4af226b63466c09c5fddbc8706b7.css" integrity="sha256-RZnq256yrT0KjWgntBqP2o8vSvImtjRmwJxf3byHBrc=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://slecee.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://slecee.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://slecee.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://slecee.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://slecee.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="4.机器学习" />
+<meta property="og:description" content="已转向python代码（资源相对较多如kaggle，也可以进一步到相对简单点的深度学习），还是简单总结一下mlr3 mlr3book: https://mlr3book.mlr-org.com/index.html https://mlr-org.com/gallery/pipelines/2020-09-11-liver-patient-classification/index.html 代码基本参照这个系列" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" /><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="4.机器学习"/>
+<meta name="twitter:description" content="已转向python代码（资源相对较多如kaggle，也可以进一步到相对简单点的深度学习），还是简单总结一下mlr3 mlr3book: https://mlr3book.mlr-org.com/index.html https://mlr-org.com/gallery/pipelines/2020-09-11-liver-patient-classification/index.html 代码基本参照这个系列"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚文章",
+      "item": "https://slecee.github.io/en/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📖学习",
+      "item": "https://slecee.github.io/en/posts/learn/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "4.机器学习",
+      "item": "https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "4.机器学习",
+  "name": "4.机器学习",
+  "description": "已转向python代码（资源相对较多如kaggle，也可以进一步到相对简单点的深度学习），还是简单总结一下mlr3 mlr3book: https://mlr3book.mlr-org.com/index.html https://mlr-org.com/gallery/pipelines/2020-09-11-liver-patient-classification/index.html 代码基本参照这个系列",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "已转向python代码（资源相对较多如kaggle，也可以进一步到相对简单点的深度学习），还是简单总结一下mlr3 mlr3book: https://mlr3book.mlr-org.com/index.html https://mlr-org.com/gallery/pipelines/2020-09-11-liver-patient-classification/index.html 代码基本参照这个系列：https://www.bilibili.com/video/BV1YB4y1H7VX/\nlibrary(tidyverse) library(openxlsx) library(mlr3verse) library(data.table) library(mltools) library(mlr3tuningspaces) library(future) library(readxl) library(treeshap) library(kernelshap) library(shapviz) library(mlr3extralearners) library(ranger) ## 一些可以选择的大家都能凑合用的参数 as.data.table(mlr_tuning_spaces)[1:30, .(key, label)] ## 是否使用嵌套交叉验证 https://blog.csdn.net/lazysnake666/article/details/135591665 ## churn_train = read_csv(\"data/Churn-Modelling-new.csv\") churn_train glimpse(churn_train) churn_train = read_csv(\"data/Churn-Modelling-new.csv\") %\u003e% select(-RowNumber,-CustomerId,-Surname) %\u003e% mutate( across(.cols = where(is.character), .fns = as.factor) # 加上括号报错 ) churn_train # 缺失值检验 missdata = function(x){ missvar = sum(is.na(x)) return(missvar) } apply(churn_train,2,missdata) ## 唯一值检查 onlydata = function(x){ onlyvar = length(unique(x)) return(onlyvar) } apply(churn_train,2,onlydata) skimr::skim(churn_train) ## 数据平衡检查 churn_train %\u003e% count(Exited) churn_train = read_csv(\"data/Churn-Modelling-new.csv\") %\u003e% select(-RowNumber,-CustomerId,-Surname) %\u003e% mutate( across(.cols = where(is.character), .fns = as.factor) # 加上括号报错 ) %\u003e% as.data.table() %\u003e% one_hot()%\u003e% mutate( Exited = as.factor(Exited) # 注意，有些算法只接受是数值 ) %\u003e% mutate( across(.cols = where(is.integer), .fns = as.numeric) ) churn_train plan(\"multisession\",workers=6) nbrOfWorkers() start\u003c-Sys.time() print(start) task_churn = as_task_classif(churn_train,target = \"Exited\") # split = partition(task = task_churn, # ratio = 0.7, # stratify = T) # train_set = split$train # test_set = split$test set.seed(123, kind = \"Mersenne-Twister\") learners = list( learner_logreg = lrn(\"classif.log_reg\", predict_type = \"prob\", predict_sets = c(\"train\", \"test\")), learner_xgb = lrn(\"classif.xgboost\", predict_type = \"prob\", predict_sets = c(\"train\", \"test\")), learner_svm = lrn(\"classif.ksvm\", predict_type = \"prob\", predict_sets = c(\"train\", \"test\")), learner_rf = lrn(\"classif.ranger\", predict_type = \"prob\", importance = 'impurity', num.trees = 1000, predict_sets = c(\"train\", \"test\")), learner_naiveb = lrn(\"classif.naive_bayes\", predict_type=\"prob\", predict_sets = c(\"train\", \"test\"))#, # learner_lgb = lrn('classif.lightgbm', # predict_type = \"prob\", # predict_sets = c(\"train\", \"test\")) # 我测试的版本不支持多模型对比添加classif.lightgbm模型，原因应该是数据结构不同 ) tune_ps_rf = ps( max.depth = p_int(lower = 3, upper = 7), min.node.size = p_int(lower = 3, upper = floor(sqrt(nrow(churn_train)))), mtry = p_int(lower = 3, upper = floor(sqrt(ncol(churn_train))) +5) ) tune_ps_xgb = lts('classif.xgboost.rbv1') # ps( #lts('classif.xgboost.rbv1') # eta = p_dbl(lower = 1e-4, upper = 1,logscale = T), # max_depth = p_int(lower = 1, upper = 20), # # min_child_weight = p_dbl(lower = 1, upper = 20), # colsample_bytree = p_dbl( lower = .1, upper = 1), # colsample_bylevel = p_dbl(lower = .1, upper = 1), # subsample = p_dbl(lower = 0.1, upper = 1), # lambda = p_dbl(lower = 1e-3, upper = 1e3,logscale = T), # alpha = p_dbl(lower = 1e-3, upper = 1e3,logscale = T) # #nrounds = p_int(lower = 1L, upper = 25) # ) # tune_ps_lgb = ps( # max.depth = p_int(lower = 3, upper = 6), # min.node.size = p_int(lower = 3, upper = floor(sqrt(nrow(churn_train)))), # mtry = p_int(lower = 3, upper = floor(sqrt(ncol(churn_train))) +5) # ) tune_ps_svm = ps( kernel = p_fct(c(\"polydot\", \"rbfdot\")), ## 如果代码长时间运行不出结果，多半是这里出问题，建议不要用多项式 degree = p_int(lower=1,upper=3,depends = (kernel == \"polydot\")), cost = p_dbl(lower=1e-4,upper=10000,logscale = T), gamma = p_dbl(lower=1e-4,upper=10000,logscale = T), type = p_fct(\"C-classification\") ) learners$learner_rf = auto_tuner( tuner = tnr(\"random_search\"), learner = learners$learner_rf, resampling = rsmp(\"cv\", folds = 4L), measure = msr(\"classif.auc\"), search_space = tune_ps_rf , term_evals = 10, # 只是展示，建议100以上 ) #learners$learner_rand$predict_sets = c(\"train\", \"test\") learners$learner_svm = auto_tuner( tuner = tnr(\"random_search\"), learner = learners$learner_svm, resampling = rsmp(\"cv\", folds = 4L), measure = msr(\"classif.auc\"), search_space = tune_ps_svm, term_evals = 10, ) # learners$learner_svm$predict_sets = c(\"train\", \"test\") # 不能有错误 # # learners$learner_xgb = auto_tuner( # tuner = tnr(\"random_search\"), # learner = learners$learner_xgb, # resampling = rsmp(\"cv\", folds = 4L), # measure = msr(\"classif.auc\"), # search_space = tune_ps_xgb, # term_evals = 10, # ) #learners$learner_rf$predict_sets = c(\"train\", \"test\") Design = benchmark_grid( tasks = task_churn, learners = learners$learner_svm, resamplings = rsmp(\"cv\",folds = 3) ) plan(\"multisession\",workers=8) nbrOfWorkers() start\u003c-Sys.time() print(start) Learner = benchmark(design = Design, store_models = FALSE) end\u003c-Sys.time() print(end) runningtime\u003c-end-start print(runningtime) plan(sequential) # 恢复 nbrOfWorkers() p1 = Learner$aggregate(msr(\"classif.acc\")) %\u003e% select(learner_id,classif.acc) p1 # Oversampling minority class to get perfectly balanced classes # po_over = po(\"classbalancing\", id = \"oversample\", adjust = \"minor\", # reference = \"minor\", shuffle = FALSE, ratio = 416/167) # table(po_over$train(list(task_liver))$output$truth()) # Check class balance # 过采样 set.seed(123, kind = \"Mersenne-Twister\") learner_oversample = list( learner_oversample_randomforest = po('classbalancing', id = 'oversample', adjust = 'minor', reference = 'minor', ratio = 4) %\u003e\u003e% # table(learner_oversample_randomforest$train(list(task_churn))$output$truth()) po(\"learner\",lrn(\"classif.randomForest\")) %\u003e% as_learner(), learner_oversample_ksvm = po(\"classbalancing\", id =\"oversample\", adjust = \"minor\", reference = \"minor\", ratio = 4)%\u003e\u003e% po(\"learner\",lrn(\"classif.ksvm\")) %\u003e% as_learner() ) Design_oversample = benchmark_grid( tasks = task_churn, learners = learner_oversample, resamplings = rsmp(\"cv\",folds = 3)) learners_oversample = benchmark(design = Design_oversample) p2 = learners_oversample$aggregate(msr(\"classif.acc\")) %\u003e% select(learner_id,classif.acc) p2 set.seed(123, kind = \"Mersenne-Twister\") # smote采样 learner_smotesample = list( learner_smotesample_randomForest = po(\"colapply\", id =\"int_to_num\", applicator = as.numeric, affect_columns = selector_type(\"integer\")) %\u003e\u003e% po(\"smote\",dup_size=3) %\u003e\u003e% po(\"learner\",lrn(\"classif.randomForest\")) %\u003e% as_learner() %\u003e% auto_tuner( tuner = tnr(\"random_search\"), learner = ., resampling = rsmp(\"cv\", folds = 5L), measure = msr(\"classif.auc\"), search_space = tune_ps_rf, term_evals = 10 ), # 可以在这里设置参数 learner_smotesample_ksvm = po(\"colapply\", id =\"int_to_num\", applicator = as.numeric, affect_columns = selector_type(\"integer\")) %\u003e\u003e% po(\"smote\",dup_size = 3) %\u003e\u003e% po(\"learner\",lrn(\"classif.ksvm\")) %\u003e% as_learner() ) Design_smotesample = benchmark_grid( tasks = task_churn, learners = learner_smotesample, resamplings = rsmp(\"cv\",folds = 3)) learners_smotesample = benchmark(design = Design_smotesample) p3 = learners_smotesample$aggregate(msr(\"classif.acc\")) %\u003e% select(learner_id,classif.acc) p3 learner_smotesample$learner_smotesample_randomForest$tuning_result$learner_param_vals[[1]] task = task_churn learner = lrn(\"classif.svm\", predict_type=\"prob\", type = \"C-classification\") learner$param_set$values$cost = to_tune(p_dbl(1e-5, 1e5, logscale = TRUE)) learner$param_set$values$gamma = to_tune(p_dbl(1e-5, 1e5, logscale = TRUE)) learner$param_set$values$kernel = to_tune(c(\"polynomial\", \"radial\")) learner$param_set$values$degree = to_tune(1, 4) resampling_inner = rsmp(\"cv\", folds = 3) terminator = trm(\"none\") tuner = tnr(\"grid_search\", resolution = 3) at = AutoTuner$new( learner = learner, resampling = resampling_inner, measure = msr(\"classif.auc\"), terminator = terminator, tuner = tuner, store_models = TRUE) resampling_outer = rsmp(\"cv\", folds = 3) rr = resample(task = task, learner = at, resampling = resampling_outer, store_models = TRUE) ### 后续的shap很麻烦，所以建议python ",
+  "wordCount" : "1148",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":[{
+    "@type": "Person",
+    "name": "Hzl"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hzl Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://slecee.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://slecee.github.io/en/" accesskey="h" title="Hzl Blog (Alt + H)">Hzl Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://slecee.github.io/en/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slecee.github.io/en/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slecee.github.io/en/posts" title="📖文章">
+                    <span>📖文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slecee.github.io/en/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://slecee.github.io/en/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://slecee.github.io/en/">Home</a>&nbsp;»&nbsp;<a href="https://slecee.github.io/en/posts/">📚文章</a>&nbsp;»&nbsp;<a href="https://slecee.github.io/en/posts/learn/">📖学习</a></div>
+    <h1 class="post-title entry-hint-parent">
+      4.机器学习
+    </h1>
+    <div class="post-meta">3 min&nbsp;·&nbsp;Hzl
+
+</div>
+  </header> 
+  <div class="post-content"><p>已转向python代码（资源相对较多如kaggle，也可以进一步到相对简单点的深度学习），还是简单总结一下mlr3
+mlr3book: <a href="https://mlr3book.mlr-org.com/index.html">https://mlr3book.mlr-org.com/index.html</a>
+<a href="https://mlr-org.com/gallery/pipelines/2020-09-11-liver-patient-classification/index.html">https://mlr-org.com/gallery/pipelines/2020-09-11-liver-patient-classification/index.html</a>
+代码基本参照这个系列：https://www.bilibili.com/video/BV1YB4y1H7VX/</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(openxlsx)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(mlr3verse)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(data.table)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(mltools)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(mlr3tuningspaces)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(future)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(readxl)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(treeshap)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(kernelshap)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(shapviz)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(mlr3extralearners)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(ranger)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 一些可以选择的大家都能凑合用的参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">as.data.table</span>(mlr_tuning_spaces)[1<span style="color:#f92672">:</span><span style="color:#ae81ff">30</span>, .(key, label)]
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 是否使用嵌套交叉验证 https://blog.csdn.net/lazysnake666/article/details/135591665</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>churn_train <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data/Churn-Modelling-new.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>churn_train
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">glimpse</span>(churn_train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>churn_train <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data/Churn-Modelling-new.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>RowNumber,<span style="color:#f92672">-</span>CustomerId,<span style="color:#f92672">-</span>Surname) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">across</span>(.cols <span style="color:#f92672">=</span> <span style="color:#a6e22e">where</span>(is.character),
+</span></span><span style="display:flex;"><span>           .fns <span style="color:#f92672">=</span> as.factor) <span style="color:#75715e"># 加上括号报错</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>churn_train
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 缺失值检验</span>
+</span></span><span style="display:flex;"><span>missdata <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(x){
+</span></span><span style="display:flex;"><span>  missvar <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">is.na</span>(x))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(missvar)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">apply</span>(churn_train,<span style="color:#ae81ff">2</span>,missdata)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 唯一值检查</span>
+</span></span><span style="display:flex;"><span>onlydata <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(x){
+</span></span><span style="display:flex;"><span>  onlyvar <span style="color:#f92672">=</span> <span style="color:#a6e22e">length</span>(<span style="color:#a6e22e">unique</span>(x))
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(onlyvar)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">apply</span>(churn_train,<span style="color:#ae81ff">2</span>,onlydata)
+</span></span><span style="display:flex;"><span>skimr<span style="color:#f92672">::</span><span style="color:#a6e22e">skim</span>(churn_train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 数据平衡检查</span>
+</span></span><span style="display:flex;"><span>churn_train <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">count</span>(Exited)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>churn_train <span style="color:#f92672">=</span> <span style="color:#a6e22e">read_csv</span>(<span style="color:#e6db74">&#34;data/Churn-Modelling-new.csv&#34;</span>) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(<span style="color:#f92672">-</span>RowNumber,<span style="color:#f92672">-</span>CustomerId,<span style="color:#f92672">-</span>Surname) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">across</span>(.cols <span style="color:#f92672">=</span> <span style="color:#a6e22e">where</span>(is.character),
+</span></span><span style="display:flex;"><span>           .fns <span style="color:#f92672">=</span> as.factor) <span style="color:#75715e"># 加上括号报错</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">as.data.table</span>() <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">one_hot</span>()<span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    Exited <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(Exited) <span style="color:#75715e"># 注意，有些算法只接受是数值</span>
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">across</span>(.cols <span style="color:#f92672">=</span>  <span style="color:#a6e22e">where</span>(is.integer),
+</span></span><span style="display:flex;"><span>           .fns <span style="color:#f92672">=</span> as.numeric)
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>churn_train
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plan</span>(<span style="color:#e6db74">&#34;multisession&#34;</span>,workers<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">nbrOfWorkers</span>()
+</span></span><span style="display:flex;"><span>start<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">Sys.time</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">print</span>(start)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>task_churn <span style="color:#f92672">=</span> <span style="color:#a6e22e">as_task_classif</span>(churn_train,target <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Exited&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># split = partition(task = task_churn,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                   ratio = 0.7,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                   stratify = T)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># train_set = split$train</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># test_set = split$test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>, kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mersenne-Twister&#34;</span>)
+</span></span><span style="display:flex;"><span>learners <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(
+</span></span><span style="display:flex;"><span>  learner_logreg <span style="color:#f92672">=</span> <span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.log_reg&#34;</span>, 
+</span></span><span style="display:flex;"><span>                       predict_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>,
+</span></span><span style="display:flex;"><span>                       predict_sets <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;train&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>)),
+</span></span><span style="display:flex;"><span>  learner_xgb <span style="color:#f92672">=</span> <span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.xgboost&#34;</span>, 
+</span></span><span style="display:flex;"><span>                    predict_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>,
+</span></span><span style="display:flex;"><span>                    predict_sets <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;train&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>)),
+</span></span><span style="display:flex;"><span>  learner_svm <span style="color:#f92672">=</span> <span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.ksvm&#34;</span>, 
+</span></span><span style="display:flex;"><span>                    predict_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>,
+</span></span><span style="display:flex;"><span>                    predict_sets <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;train&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>)),
+</span></span><span style="display:flex;"><span>  learner_rf <span style="color:#f92672">=</span> <span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.ranger&#34;</span>, 
+</span></span><span style="display:flex;"><span>                   predict_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prob&#34;</span>,
+</span></span><span style="display:flex;"><span>                   importance <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;impurity&#39;</span>,
+</span></span><span style="display:flex;"><span>                   num.trees <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>                   predict_sets <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;train&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>)),
+</span></span><span style="display:flex;"><span>  learner_naiveb <span style="color:#f92672">=</span> <span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.naive_bayes&#34;</span>, 
+</span></span><span style="display:flex;"><span>                       predict_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;prob&#34;</span>,
+</span></span><span style="display:flex;"><span>                       predict_sets <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;train&#34;</span>, <span style="color:#e6db74">&#34;test&#34;</span>))<span style="color:#75715e">#,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># learner_lgb = lrn(&#39;classif.lightgbm&#39;,  </span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#                   predict_type = &#34;prob&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#                   predict_sets = c(&#34;train&#34;, &#34;test&#34;))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 我测试的版本不支持多模型对比添加classif.lightgbm模型，原因应该是数据结构不同</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tune_ps_rf <span style="color:#f92672">=</span> <span style="color:#a6e22e">ps</span>(
+</span></span><span style="display:flex;"><span>  max.depth <span style="color:#f92672">=</span>  <span style="color:#a6e22e">p_int</span>(lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, upper <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>),
+</span></span><span style="display:flex;"><span>  min.node.size <span style="color:#f92672">=</span> <span style="color:#a6e22e">p_int</span>(lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, upper <span style="color:#f92672">=</span> <span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">sqrt</span>(<span style="color:#a6e22e">nrow</span>(churn_train)))),
+</span></span><span style="display:flex;"><span>  mtry <span style="color:#f92672">=</span> <span style="color:#a6e22e">p_int</span>(lower <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, upper <span style="color:#f92672">=</span> <span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">sqrt</span>(<span style="color:#a6e22e">ncol</span>(churn_train))) <span style="color:#ae81ff">+5</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tune_ps_xgb <span style="color:#f92672">=</span> <span style="color:#a6e22e">lts</span>(<span style="color:#e6db74">&#39;classif.xgboost.rbv1&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ps( #lts(&#39;classif.xgboost.rbv1&#39;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   eta = p_dbl(lower = 1e-4, upper = 1,logscale = T),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   max_depth = p_int(lower = 1, upper = 20),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   # min_child_weight = p_dbl(lower = 1, upper = 20),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   colsample_bytree = p_dbl( lower = .1, upper = 1),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   colsample_bylevel = p_dbl(lower = .1, upper = 1),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   subsample = p_dbl(lower = 0.1, upper = 1),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   lambda = p_dbl(lower = 1e-3, upper = 1e3,logscale = T),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   alpha = p_dbl(lower = 1e-3, upper = 1e3,logscale = T)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   #nrounds = p_int(lower = 1L, upper = 25)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># )</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tune_ps_lgb = ps(</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   max.depth =  p_int(lower = 3, upper = 6),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   min.node.size = p_int(lower = 3, upper = floor(sqrt(nrow(churn_train)))),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   mtry = p_int(lower = 3, upper = floor(sqrt(ncol(churn_train))) +5)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># )</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tune_ps_svm <span style="color:#f92672">=</span> <span style="color:#a6e22e">ps</span>(
+</span></span><span style="display:flex;"><span>  kernel <span style="color:#f92672">=</span> <span style="color:#a6e22e">p_fct</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;polydot&#34;</span>, <span style="color:#e6db74">&#34;rbfdot&#34;</span>)), <span style="color:#75715e">## 如果代码长时间运行不出结果，多半是这里出问题，建议不要用多项式</span>
+</span></span><span style="display:flex;"><span>  degree <span style="color:#f92672">=</span> <span style="color:#a6e22e">p_int</span>(lower<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,upper<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,depends <span style="color:#f92672">=</span> (kernel <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;polydot&#34;</span>)),
+</span></span><span style="display:flex;"><span>  cost <span style="color:#f92672">=</span> <span style="color:#a6e22e">p_dbl</span>(lower<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-4</span>,upper<span style="color:#f92672">=</span><span style="color:#ae81ff">10000</span>,logscale <span style="color:#f92672">=</span> T),
+</span></span><span style="display:flex;"><span>  gamma <span style="color:#f92672">=</span> <span style="color:#a6e22e">p_dbl</span>(lower<span style="color:#f92672">=</span><span style="color:#ae81ff">1e-4</span>,upper<span style="color:#f92672">=</span><span style="color:#ae81ff">10000</span>,logscale <span style="color:#f92672">=</span> T),
+</span></span><span style="display:flex;"><span>  type <span style="color:#f92672">=</span> <span style="color:#a6e22e">p_fct</span>(<span style="color:#e6db74">&#34;C-classification&#34;</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>learners<span style="color:#f92672">$</span>learner_rf <span style="color:#f92672">=</span> <span style="color:#a6e22e">auto_tuner</span>(
+</span></span><span style="display:flex;"><span>  tuner <span style="color:#f92672">=</span> <span style="color:#a6e22e">tnr</span>(<span style="color:#e6db74">&#34;random_search&#34;</span>),
+</span></span><span style="display:flex;"><span>  learner <span style="color:#f92672">=</span> learners<span style="color:#f92672">$</span>learner_rf,
+</span></span><span style="display:flex;"><span>  resampling <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>, folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">4L</span>),
+</span></span><span style="display:flex;"><span>  measure <span style="color:#f92672">=</span> <span style="color:#a6e22e">msr</span>(<span style="color:#e6db74">&#34;classif.auc&#34;</span>),
+</span></span><span style="display:flex;"><span>  search_space <span style="color:#f92672">=</span> tune_ps_rf ,
+</span></span><span style="display:flex;"><span>  term_evals <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#75715e"># 只是展示，建议100以上</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#learners$learner_rand$predict_sets = c(&#34;train&#34;, &#34;test&#34;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>learners<span style="color:#f92672">$</span>learner_svm <span style="color:#f92672">=</span> <span style="color:#a6e22e">auto_tuner</span>(
+</span></span><span style="display:flex;"><span>  tuner <span style="color:#f92672">=</span> <span style="color:#a6e22e">tnr</span>(<span style="color:#e6db74">&#34;random_search&#34;</span>),
+</span></span><span style="display:flex;"><span>  learner <span style="color:#f92672">=</span> learners<span style="color:#f92672">$</span>learner_svm,
+</span></span><span style="display:flex;"><span>  resampling <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>, folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">4L</span>),
+</span></span><span style="display:flex;"><span>  measure <span style="color:#f92672">=</span> <span style="color:#a6e22e">msr</span>(<span style="color:#e6db74">&#34;classif.auc&#34;</span>),
+</span></span><span style="display:flex;"><span>  search_space <span style="color:#f92672">=</span> tune_ps_svm,
+</span></span><span style="display:flex;"><span>  term_evals <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># learners$learner_svm$predict_sets = c(&#34;train&#34;, &#34;test&#34;) # 不能有错误</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># learners$learner_xgb = auto_tuner(</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   tuner = tnr(&#34;random_search&#34;),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   learner = learners$learner_xgb,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   resampling = rsmp(&#34;cv&#34;, folds = 4L),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   measure = msr(&#34;classif.auc&#34;),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   search_space = tune_ps_xgb,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   term_evals = 10,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># )</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#learners$learner_rf$predict_sets = c(&#34;train&#34;, &#34;test&#34;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Design <span style="color:#f92672">=</span> <span style="color:#a6e22e">benchmark_grid</span>(
+</span></span><span style="display:flex;"><span>  tasks <span style="color:#f92672">=</span> task_churn,
+</span></span><span style="display:flex;"><span>  learners <span style="color:#f92672">=</span> learners<span style="color:#f92672">$</span>learner_svm,
+</span></span><span style="display:flex;"><span>  resamplings <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>,folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plan</span>(<span style="color:#e6db74">&#34;multisession&#34;</span>,workers<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">nbrOfWorkers</span>()
+</span></span><span style="display:flex;"><span>start<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">Sys.time</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">print</span>(start)
+</span></span><span style="display:flex;"><span>Learner <span style="color:#f92672">=</span> <span style="color:#a6e22e">benchmark</span>(design <span style="color:#f92672">=</span> Design, store_models <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>end<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">Sys.time</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">print</span>(end)
+</span></span><span style="display:flex;"><span>runningtime<span style="color:#f92672">&lt;-</span>end<span style="color:#f92672">-</span>start
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">print</span>(runningtime) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plan</span>(sequential) <span style="color:#75715e"># 恢复</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">nbrOfWorkers</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p1 <span style="color:#f92672">=</span> Learner<span style="color:#f92672">$</span><span style="color:#a6e22e">aggregate</span>(<span style="color:#a6e22e">msr</span>(<span style="color:#e6db74">&#34;classif.acc&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(learner_id,classif.acc)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Oversampling minority class to get perfectly balanced classes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># po_over = po(&#34;classbalancing&#34;, id = &#34;oversample&#34;, adjust = &#34;minor&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#              reference = &#34;minor&#34;, shuffle = FALSE, ratio = 416/167)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># table(po_over$train(list(task_liver))$output$truth()) # Check class balance</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 过采样</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>, kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mersenne-Twister&#34;</span>)
+</span></span><span style="display:flex;"><span>learner_oversample <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(
+</span></span><span style="display:flex;"><span>  learner_oversample_randomforest <span style="color:#f92672">=</span> <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#39;classbalancing&#39;</span>,
+</span></span><span style="display:flex;"><span>                                       id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;oversample&#39;</span>,
+</span></span><span style="display:flex;"><span>                                       adjust <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;minor&#39;</span>,
+</span></span><span style="display:flex;"><span>                                       reference <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;minor&#39;</span>,
+</span></span><span style="display:flex;"><span>                                       ratio <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">%&gt;&gt;%</span> <span style="color:#75715e"># table(learner_oversample_randomforest$train(list(task_churn))$output$truth())</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;learner&#34;</span>,<span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.randomForest&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">as_learner</span>(),
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  learner_oversample_ksvm <span style="color:#f92672">=</span> <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;classbalancing&#34;</span>,
+</span></span><span style="display:flex;"><span>                               id <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;oversample&#34;</span>,
+</span></span><span style="display:flex;"><span>                               adjust <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;minor&#34;</span>,
+</span></span><span style="display:flex;"><span>                               reference <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;minor&#34;</span>,
+</span></span><span style="display:flex;"><span>                               ratio <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)<span style="color:#f92672">%&gt;&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;learner&#34;</span>,<span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.ksvm&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">as_learner</span>()
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Design_oversample <span style="color:#f92672">=</span> <span style="color:#a6e22e">benchmark_grid</span>(
+</span></span><span style="display:flex;"><span>  tasks <span style="color:#f92672">=</span> task_churn,
+</span></span><span style="display:flex;"><span>  learners <span style="color:#f92672">=</span> learner_oversample,
+</span></span><span style="display:flex;"><span>  resamplings <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>,folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>learners_oversample <span style="color:#f92672">=</span> <span style="color:#a6e22e">benchmark</span>(design <span style="color:#f92672">=</span> Design_oversample)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p2 <span style="color:#f92672">=</span> learners_oversample<span style="color:#f92672">$</span><span style="color:#a6e22e">aggregate</span>(<span style="color:#a6e22e">msr</span>(<span style="color:#e6db74">&#34;classif.acc&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(learner_id,classif.acc)
+</span></span><span style="display:flex;"><span>p2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">123</span>, kind <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mersenne-Twister&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># smote采样</span>
+</span></span><span style="display:flex;"><span>learner_smotesample <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(
+</span></span><span style="display:flex;"><span>  learner_smotesample_randomForest <span style="color:#f92672">=</span> <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;colapply&#34;</span>,
+</span></span><span style="display:flex;"><span>                                        id <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int_to_num&#34;</span>,
+</span></span><span style="display:flex;"><span>                                        applicator <span style="color:#f92672">=</span> as.numeric,
+</span></span><span style="display:flex;"><span>                                        affect_columns <span style="color:#f92672">=</span> <span style="color:#a6e22e">selector_type</span>(<span style="color:#e6db74">&#34;integer&#34;</span>)) <span style="color:#f92672">%&gt;&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;smote&#34;</span>,dup_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">%&gt;&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;learner&#34;</span>,<span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.randomForest&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">as_learner</span>() <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">auto_tuner</span>(
+</span></span><span style="display:flex;"><span>      tuner <span style="color:#f92672">=</span> <span style="color:#a6e22e">tnr</span>(<span style="color:#e6db74">&#34;random_search&#34;</span>),
+</span></span><span style="display:flex;"><span>      learner <span style="color:#f92672">=</span> .,
+</span></span><span style="display:flex;"><span>      resampling <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>, folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">5L</span>), 
+</span></span><span style="display:flex;"><span>      measure <span style="color:#f92672">=</span> <span style="color:#a6e22e">msr</span>(<span style="color:#e6db74">&#34;classif.auc&#34;</span>),
+</span></span><span style="display:flex;"><span>      search_space <span style="color:#f92672">=</span> tune_ps_rf,
+</span></span><span style="display:flex;"><span>      term_evals <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    ), <span style="color:#75715e"># 可以在这里设置参数</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  learner_smotesample_ksvm <span style="color:#f92672">=</span> <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;colapply&#34;</span>,
+</span></span><span style="display:flex;"><span>                                id <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int_to_num&#34;</span>,
+</span></span><span style="display:flex;"><span>                                applicator <span style="color:#f92672">=</span> as.numeric,
+</span></span><span style="display:flex;"><span>                                affect_columns <span style="color:#f92672">=</span> <span style="color:#a6e22e">selector_type</span>(<span style="color:#e6db74">&#34;integer&#34;</span>)) <span style="color:#f92672">%&gt;&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;smote&#34;</span>,dup_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">%&gt;&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">po</span>(<span style="color:#e6db74">&#34;learner&#34;</span>,<span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.ksvm&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">as_learner</span>()
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Design_smotesample <span style="color:#f92672">=</span> <span style="color:#a6e22e">benchmark_grid</span>(
+</span></span><span style="display:flex;"><span>  tasks <span style="color:#f92672">=</span> task_churn,
+</span></span><span style="display:flex;"><span>  learners <span style="color:#f92672">=</span> learner_smotesample,
+</span></span><span style="display:flex;"><span>  resamplings <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>,folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>learners_smotesample <span style="color:#f92672">=</span> <span style="color:#a6e22e">benchmark</span>(design <span style="color:#f92672">=</span> Design_smotesample)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p3 <span style="color:#f92672">=</span> learners_smotesample<span style="color:#f92672">$</span><span style="color:#a6e22e">aggregate</span>(<span style="color:#a6e22e">msr</span>(<span style="color:#e6db74">&#34;classif.acc&#34;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">select</span>(learner_id,classif.acc)
+</span></span><span style="display:flex;"><span>p3
+</span></span><span style="display:flex;"><span>learner_smotesample<span style="color:#f92672">$</span>learner_smotesample_randomForest<span style="color:#f92672">$</span>tuning_result<span style="color:#f92672">$</span>learner_param_vals[[1]]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>task <span style="color:#f92672">=</span> task_churn
+</span></span><span style="display:flex;"><span>learner <span style="color:#f92672">=</span> <span style="color:#a6e22e">lrn</span>(<span style="color:#e6db74">&#34;classif.svm&#34;</span>,  predict_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;prob&#34;</span>, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C-classification&#34;</span>)
+</span></span><span style="display:flex;"><span>learner<span style="color:#f92672">$</span>param_set<span style="color:#f92672">$</span>values<span style="color:#f92672">$</span>cost <span style="color:#f92672">=</span> <span style="color:#a6e22e">to_tune</span>(<span style="color:#a6e22e">p_dbl</span>(<span style="color:#ae81ff">1e-5</span>, <span style="color:#ae81ff">1e5</span>, logscale <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>))
+</span></span><span style="display:flex;"><span>learner<span style="color:#f92672">$</span>param_set<span style="color:#f92672">$</span>values<span style="color:#f92672">$</span>gamma <span style="color:#f92672">=</span> <span style="color:#a6e22e">to_tune</span>(<span style="color:#a6e22e">p_dbl</span>(<span style="color:#ae81ff">1e-5</span>, <span style="color:#ae81ff">1e5</span>, logscale <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>))
+</span></span><span style="display:flex;"><span>learner<span style="color:#f92672">$</span>param_set<span style="color:#f92672">$</span>values<span style="color:#f92672">$</span>kernel <span style="color:#f92672">=</span> <span style="color:#a6e22e">to_tune</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;polynomial&#34;</span>, <span style="color:#e6db74">&#34;radial&#34;</span>))
+</span></span><span style="display:flex;"><span>learner<span style="color:#f92672">$</span>param_set<span style="color:#f92672">$</span>values<span style="color:#f92672">$</span>degree <span style="color:#f92672">=</span> <span style="color:#a6e22e">to_tune</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resampling_inner <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>, folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>terminator <span style="color:#f92672">=</span> <span style="color:#a6e22e">trm</span>(<span style="color:#e6db74">&#34;none&#34;</span>)
+</span></span><span style="display:flex;"><span>tuner <span style="color:#f92672">=</span> <span style="color:#a6e22e">tnr</span>(<span style="color:#e6db74">&#34;grid_search&#34;</span>, resolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>at <span style="color:#f92672">=</span> AutoTuner<span style="color:#f92672">$</span><span style="color:#a6e22e">new</span>(
+</span></span><span style="display:flex;"><span>  learner <span style="color:#f92672">=</span> learner,
+</span></span><span style="display:flex;"><span>  resampling <span style="color:#f92672">=</span> resampling_inner,
+</span></span><span style="display:flex;"><span>  measure <span style="color:#f92672">=</span>  <span style="color:#a6e22e">msr</span>(<span style="color:#e6db74">&#34;classif.auc&#34;</span>),
+</span></span><span style="display:flex;"><span>  terminator <span style="color:#f92672">=</span> terminator,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  tuner <span style="color:#f92672">=</span> tuner,
+</span></span><span style="display:flex;"><span>  store_models <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resampling_outer <span style="color:#f92672">=</span> <span style="color:#a6e22e">rsmp</span>(<span style="color:#e6db74">&#34;cv&#34;</span>, folds <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>rr <span style="color:#f92672">=</span> <span style="color:#a6e22e">resample</span>(task <span style="color:#f92672">=</span> task, learner <span style="color:#f92672">=</span> at, resampling <span style="color:#f92672">=</span> resampling_outer, store_models <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 后续的shap很麻烦，所以建议python</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://slecee.github.io/en/tags/learn/">Learn</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://slecee.github.io/en/posts/learn/01.%E7%94%9F%E4%BF%A1/3.%E8%BD%AC%E5%BD%95%E7%BB%84/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>3.转录组</span>
+  </a>
+  <a class="next" href="https://slecee.github.io/en/posts/learn/readme/">
+    <span class="title">Next »</span>
+    <br>
+    <span>简单学习介绍</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://slecee.github.io/en/">Hzl Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
